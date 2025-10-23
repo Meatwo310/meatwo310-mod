@@ -4,7 +4,6 @@ import io.github.meatwo310.meatwo310.Meatwo310;
 import io.github.meatwo310.meatwo310.datagen.ModModelGen;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
