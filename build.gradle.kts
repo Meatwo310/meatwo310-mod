@@ -21,13 +21,13 @@ object ModConfig {
     const val loaderVersionRange = "[47,)"
     const val mappingChannel = "parchment"
     const val mappingVersion = "2023.09.03-1.20.1"
-    
+
     // Mod Properties
-    const val modId = "examplemod"
-    const val modName = "Example Mod"
+    const val modId = "meatwo310"
+    const val modName = "Meatwo310"
     const val modLicense = "MIT"
     const val modVersion = "0.1.0"
-    const val modGroupId = "io.github.meatwo310.examplemod"
+    const val modGroupId = "io.github.meatwo310.meatwo310"
     const val modAuthors = "Meatwo310"
     const val modDescription = ""
 }

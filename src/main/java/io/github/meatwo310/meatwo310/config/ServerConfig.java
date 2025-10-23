@@ -1,4 +1,4 @@
-package io.github.meatwo310.examplemod.config;
+package io.github.meatwo310.meatwo310.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
