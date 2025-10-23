@@ -25,7 +25,7 @@ object ModConfig {
     // Mod Properties
     const val modId = "meatwo310"
     const val modName = "Meatwo310"
-    const val modLicense = "MIT"
+    const val modLicense = "GPL-3.0"
     const val modVersion = "0.1.0"
     const val modGroupId = "io.github.meatwo310.meatwo310"
     const val modAuthors = "Meatwo310"
@@ -130,6 +130,9 @@ dependencies {
 //    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.0")) {
 //        jarJar.ranged(this, "[0.5.0,)")
 //    }
+
+    implementation(fg.deobf("curse.maven:timeless-and-classics-zero-1028108:6654541"))
+    implementation(fg.deobf("curse.maven:tacz-lesraisins-tactical-equipements-1273094:6751092"))
 
     // Default Dependencies
     runtimeOnly(fg.deobf("curse.maven:catalogue-459701:4766090"))
