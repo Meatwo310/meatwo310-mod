@@ -13,5 +13,15 @@ public class ServerConfig {
             .comment("Height above which players are considered camping")
             .defineInRange("height", 310, Integer.MIN_VALUE, Integer.MAX_VALUE);
 
+    public static final ForgeConfigSpec.BooleanValue EXPLOSION_TACZ_DECAY_DROP = BUILDER
+            .pop()
+            .push("explosion")
+            .comment("If true, explosions created by TaCZ guns will cause blocks to decay")
+            .comment("Has no effect if noDrop is true")
+            .define("taczDecayDrop", true);
+    public static final ForgeConfigSpec.BooleanValue EXPLOSION_NO_DROP = BUILDER
+            .comment("If true, blocks destroyed by explosions will not drop items")
+            .define("noDrop", true);
+
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 }
