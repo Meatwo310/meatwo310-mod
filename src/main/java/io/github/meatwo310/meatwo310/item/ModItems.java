@@ -21,6 +21,7 @@ public class ModItems {
     public static final Map<String, RegistryObject<Item>> ITEM_MAP = new LinkedHashMap<>();
 
     public static final RegistryObject<Item> MEATWO310 = add("meatwo310", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> VALINE3G = add("valine3g", () -> new Item(new Item.Properties()));
 
     public static RegistryObject<Item> add(String name, Supplier<Item> sup) {
         return add(name, sup, ModModelGen::addBasicItem);

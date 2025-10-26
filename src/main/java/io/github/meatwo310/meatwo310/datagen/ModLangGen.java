@@ -23,6 +23,7 @@ public class ModLangGen {
         protected void addTranslations() {
             add(ModTabs.TAB_ID, "Meatwo310");
             add(ModItems.MEATWO310.get(), "Meatwo310");
+            add(ModItems.VALINE3G.get(), "Valine3g");
         }
     }
 
