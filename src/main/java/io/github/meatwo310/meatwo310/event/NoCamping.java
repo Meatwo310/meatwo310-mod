@@ -40,8 +40,6 @@ public class NoCamping {
             return;
         }
 
-        LogUtils.getLogger().info("FIRE");
-
         var players = server.getPlayerList().getPlayers().stream()
                 .filter(player -> player.getY() > ServerConfig.CAMPING_CHECK_HEIGHT.get())
                 .toList();
