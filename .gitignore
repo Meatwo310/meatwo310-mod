@@ -15,6 +15,7 @@ out
 
 # gradle
 build
+.gradle*
 .gradle
 
 # other
@@ -22,3 +23,4 @@ eclipse
 /run
 /run-*
 /src/generated/resources/.cache
+

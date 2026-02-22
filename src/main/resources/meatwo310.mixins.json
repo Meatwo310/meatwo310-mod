@@ -1,19 +1,16 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.github.meatwo310.meatwo310.mixin",
+  "package": "com.dousiyo.meatwo310.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "meatwo310.refmap.json",
   "mixins": [
     "minecraft.ExplosionMixin",
+    "minecraft.ServerPlayerDeathMessageMixin",
     "tacz.ExplodeUtilMixin"
   ],
-  "client": [
-  ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
-  },
-  "overwrites": {
-    "requireAnnotations": true
   }
 }

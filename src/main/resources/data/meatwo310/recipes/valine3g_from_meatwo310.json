@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": { "item": "meatwo310:meatwo310" }
+  },
+  "result": {
+    "item": "meatwo310:valine3g",
+    "count": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "meatwo310:block/meatwo310_cutter"
+  }
+}

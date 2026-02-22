@@ -26,5 +26,8 @@ versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
+[[mixins]]
+config = "${mod_id}.mixins.json"
+
 [modproperties.${mod_id}]
 catalogueImageIcon = "${mod_id}.png"

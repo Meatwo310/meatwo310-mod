@@ -1,0 +1,7 @@
+{
+  "type": "meatwo310:meatwo310_cutting",
+  "group": "from_meatwo310",
+  "ingredient": { "item": "meatwo310:meatwo310" },
+  "result": "meatwo310:twister716",
+  "count": 1
+}
