@@ -2,11 +2,14 @@ package com.dousiyo.meatwo310.registry;
 
 import com.dousiyo.meatwo310.Meatwo310;
 import com.dousiyo.meatwo310.datagen.ModModelGen;
+import com.dousiyo.meatwo310.item.armor.UnbreakableDiamondArmorItem;
 import com.dousiyo.meatwo310.item.food.*;
 import com.dousiyo.meatwo310.item.tool.*;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -166,5 +169,25 @@ public class ModItems {
             add("hop_grenade", () -> new HopGrenadeItem(
                     new Item.Properties().stacksTo(16),
                     HOP_GRENADE_COOLDOWN_TICKS
+            ));
+
+    public static final RegistryObject<Item> UNBREAKABLE_DIAMOND_HELMET =
+            add("unbreakable_diamond_helmet", () -> new UnbreakableDiamondArmorItem(
+                    ArmorMaterials.DIAMOND, ArmorItem.Type.HELMET, new Item.Properties()
+            ));
+
+    public static final RegistryObject<Item> UNBREAKABLE_DIAMOND_CHESTPLATE =
+            add("unbreakable_diamond_chestplate", () -> new UnbreakableDiamondArmorItem(
+                    ArmorMaterials.DIAMOND, ArmorItem.Type.CHESTPLATE, new Item.Properties()
+            ));
+
+    public static final RegistryObject<Item> UNBREAKABLE_DIAMOND_LEGGINGS =
+            add("unbreakable_diamond_leggings", () -> new UnbreakableDiamondArmorItem(
+                    ArmorMaterials.DIAMOND, ArmorItem.Type.LEGGINGS, new Item.Properties()
+            ));
+
+    public static final RegistryObject<Item> UNBREAKABLE_DIAMOND_BOOTS =
+            add("unbreakable_diamond_boots", () -> new UnbreakableDiamondArmorItem(
+                    ArmorMaterials.DIAMOND, ArmorItem.Type.BOOTS, new Item.Properties()
             ));
 }

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "SMS",
+    "SMS"
+  ],
+  "key": {
+    "I": { "item": "minecraft:green_wool" },
+    "S": { "item": "minecraft:raw_gold" },
+    "M": { "item": "meatwo310:meatwo310" }
+  },
+  "result": {
+    "item": "meatwo310:arumisia",
+    "count": 1
+  }
+}

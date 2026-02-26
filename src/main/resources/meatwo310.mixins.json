@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "meatwo310.refmap.json",
   "mixins": [
+    "minecraft.AbstractFurnaceBlockEntityMixin",
     "minecraft.ExplosionMixin",
     "minecraft.ServerPlayerDeathMessageMixin",
     "tacz.ExplodeUtilMixin"

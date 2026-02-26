@@ -1,0 +1,8 @@
+{
+  "type": "meatwo310:meatwo310_cutting",
+  "group": "from_valine3g",
+  "ingredient": { "item": "meatwo310:valine3g" },
+  "result": "meatwo310:cyan_shisha",
+  "count": 1
+}
+

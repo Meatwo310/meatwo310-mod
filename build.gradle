@@ -122,6 +122,7 @@ dependencies {
     implementation fg.deobf("curse.maven:chloride-931925:6504509")
     compileOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:11.0.99")
     compileOnly fg.deobf("dev.architectury:architectury-forge:9.0.7")
+    implementation fg.deobf("curse.maven:roughly-enough-items-hacks-521393:4837449")
     compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-api-forge:12.1.758")
     runtimeOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:12.1.758")
     // Default Dependencies

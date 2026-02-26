@@ -119,6 +119,7 @@ public class Meatwo310TerminalScreen extends AbstractContainerScreen<Meatwo310Te
 
             var out = recipes.get(i).getResultItem(this.minecraft.level.registryAccess());
             g.renderItem(out, x, y);
+            g.renderItemDecorations(this.font, out, x, y);
 
             boolean hovered = mouseX >= slotLeft && mouseX < slotRight
                     && mouseY >= slotTop && mouseY < slotBottom;

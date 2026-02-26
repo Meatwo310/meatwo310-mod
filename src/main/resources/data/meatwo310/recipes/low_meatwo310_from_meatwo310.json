@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "meatwo310:meatwo310"
+    }
+  ],
+  "result": {
+    "item": "meatwo310:low_meatwo310",
+    "count": 9
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "meatwo310:meatwo310"
+  },
+  "base": {
+    "item": "minecraft:diamond_helmet"
+  },
+  "addition": {
+    "item": "meatwo310:valine3g"
+  },
+  "result": {
+    "item": "meatwo310:unbreakable_diamond_helmet"
+  }
+}
+

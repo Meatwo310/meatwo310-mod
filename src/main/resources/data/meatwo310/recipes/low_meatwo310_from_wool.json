@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": { "tag": "minecraft:wool" }
+  },
+  "result": {
+    "item": "meatwo310:low_meatwo310",
+    "count": 1
+  }
+}
+
