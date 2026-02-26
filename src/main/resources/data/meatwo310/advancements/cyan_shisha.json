@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "meatwo310:cyan_shisha"
+    },
+    "title": {
+      "translate": "advancements.meatwo310.use_cyan_shisha.title"
+    },
+    "description": {
+      "translate": "advancements.meatwo310.use_cyan_shisha.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ate": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
+

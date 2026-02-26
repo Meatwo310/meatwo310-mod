@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "meatwo310:meatwo310_cutter"
+    },
+    "title": {
+      "translate": "advancements.meatwo310.use_meatwo310_cutter.title"
+    },
+    "description": {
+      "translate": "advancements.meatwo310.use_meatwo310_cutter.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "crafted": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
+

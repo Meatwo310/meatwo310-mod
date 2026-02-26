@@ -122,7 +122,7 @@ public class ModItems {
             ));
 
     public static final RegistryObject<Item> CYAN_SHISHA =
-            add("cyan_shisha", () -> new ShishaItem(
+            add("cyan_shisha", () -> new CyanShishaItem(
                     new Item.Properties().durability(SHISHA_MAX_USES),
                     java.util.List.of(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 120, 4)),
                     SHISHA_COOLDOWN_TICKS

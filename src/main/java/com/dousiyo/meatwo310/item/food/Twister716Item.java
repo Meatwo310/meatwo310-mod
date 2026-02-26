@@ -19,6 +19,7 @@ public class Twister716Item extends Item {
         return 3;
     }
 
+
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable("tooltip.meatwo310.twister716").withStyle(ChatFormatting.GRAY));

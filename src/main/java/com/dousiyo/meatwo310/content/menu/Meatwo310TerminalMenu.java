@@ -1,9 +1,13 @@
 package com.dousiyo.meatwo310.content.menu;
 
+import com.dousiyo.meatwo310.Meatwo310;
 import com.dousiyo.meatwo310.registry.ModBlocks;
 import com.dousiyo.meatwo310.registry.ModMenus;
 import com.dousiyo.meatwo310.registry.ModRecipeTypes;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -58,6 +62,11 @@ public class Meatwo310TerminalMenu extends AbstractContainerMenu {
             @Override
             public void onTake(Player player, ItemStack stack) {
                 super.onTake(player, stack);
+
+                // Grant advancement
+                if (player instanceof ServerPlayer serverPlayer) {
+                    grantCutterAdvancement(serverPlayer);
+                }
 
                 consumeOneInput();
 
@@ -135,6 +144,11 @@ public class Meatwo310TerminalMenu extends AbstractContainerMenu {
             player.drop(toGive, false);
         }
 
+        // Grant advancement
+        if (player instanceof ServerPlayer serverPlayer) {
+            grantCutterAdvancement(serverPlayer);
+        }
+
         consumeOneInput();
         updateRecipes();
 
@@ -146,6 +160,16 @@ public class Meatwo310TerminalMenu extends AbstractContainerMenu {
 
         result.setItem(0, ItemStack.EMPTY);
         broadcastChanges();
+    }
+
+    private void grantCutterAdvancement(ServerPlayer player) {
+        ResourceLocation advId = Meatwo310.loc("use_meatwo310_cutter");
+        Advancement advancement = player.server.getAdvancements().getAdvancement(advId);
+        if (advancement != null) {
+            for (String criterion : advancement.getCriteria().keySet()) {
+                player.getAdvancements().award(advancement, criterion);
+            }
+        }
     }
 
     public int getSelectedIndex() { return selectedIndex.get(); }

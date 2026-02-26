@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "meatwo310:valine3g"
+    },
+    "title": {
+      "translate": "advancements.meatwo310.eat_valine3g.title"
+    },
+    "description": {
+      "translate": "advancements.meatwo310.eat_valine3g.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ate": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
+

@@ -43,7 +43,13 @@
   "tooltip.meatwo310.ice_fish": "食べると凍結効果を得る",
   "container.meatwo310.meatwo310_cutter": "いろいろ加工機",
   "block.meatwo310.meatwo310_cutter": "いろいろ加工機",
-  "rei.meatwo310.meatwo310_cutting": "いろいろ加工機"
+  "rei.meatwo310.meatwo310_cutting": "いろいろ加工機",
+  "advancements.meatwo310.use_meatwo310_cutter.title": "～～自己解決～～",
+  "advancements.meatwo310.use_meatwo310_cutter.description": "資源問題を解決する",
+  "advancements.meatwo310.eat_valine3g.title": "ﾌｧｰwwwwwwwwww",
+  "advancements.meatwo310.eat_valine3g.description": "満腹度をバグらせる",
+  "advancements.meatwo310.use_cyan_shisha.title": "おお",
+  "advancements.meatwo310.use_cyan_shisha.description": "速くなる"
 }
 
 
