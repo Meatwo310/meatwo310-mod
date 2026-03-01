@@ -30,7 +30,7 @@ public class HopGrenade extends ThrowableItemProjectile {
         super.onHit(result);
         if (!this.level().isClientSide) {
             this.setPos(result.getLocation());
-            HopKnockbackExplosion.create(this.level(), null, this.getX(), this.getY(), this.getZ(), 8.0F);
+            HopKnockbackExplosion.create(this.level(), this, this.getX(), this.getY(), this.getZ(), 8.0F);
             this.discard();
         }
     }

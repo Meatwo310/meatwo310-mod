@@ -18,8 +18,6 @@ public class GrapplerProjectile extends ThrowableItemProjectile {
     private static final int MAX_LIFE_TIME = 7;
     public static final String NO_FALL_DAMAGE_UNTIL_KEY = "meatwo310:no_fall_damage_until";
     public static final int NO_FALL_DAMAGE_DURATION_TICKS = 100;
-    public static final String GRAPPLER_LIFT_UNTIL_KEY = "meatwo310:grappler_lift_until";
-    private static final int LIFT_DELAY_TICKS = 4;
 
     public GrapplerProjectile(EntityType<? extends GrapplerProjectile> type, Level level) {
         super(type, level);
@@ -83,17 +81,6 @@ public class GrapplerProjectile extends ThrowableItemProjectile {
                 Vec3 direction = hitPos.subtract(owner.position());
 
                 if (direction.lengthSqr() > 1.0D) {
-                    long liftUntil = owner.level().getGameTime() + LIFT_DELAY_TICKS + 20;
-                    owner.getPersistentData().putLong(GRAPPLER_LIFT_UNTIL_KEY, liftUntil);
-                    var server = owner.level().getServer();
-                    if (server != null) {
-                        server.tell(new net.minecraft.server.TickTask(server.getTickCount() + LIFT_DELAY_TICKS + 20, () -> {
-                            if (owner.getPersistentData().getLong(GRAPPLER_LIFT_UNTIL_KEY) == liftUntil) {
-                                owner.getPersistentData().remove(GRAPPLER_LIFT_UNTIL_KEY);
-                            }
-                        }));
-                    }
-
                     Vec3 targetPos = hitPos.add(0, 2.0D, 0);
                     Vec3 adjustedDirection = targetPos.subtract(owner.position());
 

@@ -17,6 +17,7 @@ public final class BlinkTeleportC2SPacket {
     private static final int MOMENTUM_RESET_AFTER_TICKS = 4;
     private static final double HORIZONTAL_MOMENTUM_KEEP_RATIO = 0.5D;
     private static final String CD_KEY = Meatwo310.MODID + ":blink_cd";
+    private static final String MOMENTUM_RESET_AT_KEY = Meatwo310.MODID + ":blink_momentum_reset_at";
 
     public BlinkTeleportC2SPacket() {}
 
@@ -69,19 +70,26 @@ public final class BlinkTeleportC2SPacket {
         sp.setDeltaMovement(dash.x, dash.y, dash.z);
         sp.hurtMarked = true;
         sp.fallDistance = 0.0F;
-        if (sp.server != null) {
-            long executeAt = sp.server.getTickCount() + MOMENTUM_RESET_AFTER_TICKS;
-            sp.server.tell(new net.minecraft.server.TickTask((int) executeAt, () -> {
-                if (sp.isRemoved()) return;
-                Vec3 current = sp.getDeltaMovement();
-                sp.setDeltaMovement(
-                        current.x * HORIZONTAL_MOMENTUM_KEEP_RATIO,
-                        0.0D,
-                        current.z * HORIZONTAL_MOMENTUM_KEEP_RATIO
-                );
-                sp.hurtMarked = true;
-            }));
-        }
+        sp.getPersistentData().putLong(MOMENTUM_RESET_AT_KEY, sp.level().getGameTime() + MOMENTUM_RESET_AFTER_TICKS);
         return true;
+    }
+
+    public static void applyMomentumResetIfDue(ServerPlayer sp) {
+        if (sp.isRemoved()) return;
+        CompoundTag data = sp.getPersistentData();
+        if (!data.contains(MOMENTUM_RESET_AT_KEY)) return;
+
+        long now = sp.level().getGameTime();
+        long resetAt = data.getLong(MOMENTUM_RESET_AT_KEY);
+        if (now < resetAt) return;
+
+        Vec3 current = sp.getDeltaMovement();
+        sp.setDeltaMovement(
+                current.x * HORIZONTAL_MOMENTUM_KEEP_RATIO,
+                0.0D,
+                current.z * HORIZONTAL_MOMENTUM_KEEP_RATIO
+        );
+        sp.hurtMarked = true;
+        data.remove(MOMENTUM_RESET_AT_KEY);
     }
 }

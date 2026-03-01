@@ -1,5 +1,6 @@
 package com.dousiyo.meatwo310.util;
 
+import com.dousiyo.meatwo310.config.ServerConfig;
 import com.dousiyo.meatwo310.registry.ModEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -18,28 +19,34 @@ public class IceKnockbackExplosion {
             return;
         }
 
+        double effectiveRadius = Math.min(radius, ServerConfig.EXPLOSION_MAX_GRENADE_RADIUS.get());
+        double radiusSqr = effectiveRadius * effectiveRadius;
+        int maxAffected = ServerConfig.EXPLOSION_MAX_AFFECTED_ENTITIES.get();
+
         Vec3 center = new Vec3(x, y, z);
 
         AABB aabb = new AABB(
-                x - radius, y - radius, z - radius,
-                x + radius, y + radius, z + radius
+                x - effectiveRadius, y - effectiveRadius, z - effectiveRadius,
+                x + effectiveRadius, y + effectiveRadius, z + effectiveRadius
         );
 
-        List<Entity> entities = level.getEntities(null, aabb);
+        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, aabb);
+        int affected = 0;
 
-        for (Entity entity : entities) {
-            if (!(entity instanceof LivingEntity livingEntity)) {
+        for (LivingEntity livingEntity : entities) {
+            if (affected >= maxAffected) {
+                break;
+            }
+
+            Vec3 entityPos = livingEntity.position().add(0, livingEntity.getBbHeight() * 0.5, 0);
+            double distanceSqr = center.distanceToSqr(entityPos);
+
+            if (distanceSqr > radiusSqr) {
                 continue;
             }
 
-            Vec3 entityPos = entity.position().add(0, entity.getBbHeight() * 0.5, 0);
-            double distance = center.distanceTo(entityPos);
-
-            if (distance > radius) {
-                continue;
-            }
-
-            double normalizedDistance = distance / radius;
+            double distance = Math.sqrt(distanceSqr);
+            double normalizedDistance = distance / effectiveRadius;
             double strength = Math.cos(normalizedDistance * Math.PI * 0.5);
 
             double minStrength = 0.1;
@@ -63,14 +70,15 @@ public class IceKnockbackExplosion {
             double knockX = knockbackDir.x * strength * horizontalMultiplier;
             double knockZ = knockbackDir.z * strength * horizontalMultiplier;
 
-            Vec3 currentMotion = entity.getDeltaMovement();
-            entity.setDeltaMovement(currentMotion.add(knockX, 0, knockZ));
+            Vec3 currentMotion = livingEntity.getDeltaMovement();
+            livingEntity.setDeltaMovement(currentMotion.add(knockX, 0, knockZ));
 
-            entity.hurtMarked = true;
+            livingEntity.hurtMarked = true;
 
-            if (entity instanceof Player player) {
+            if (livingEntity instanceof Player player) {
                 player.addEffect(new MobEffectInstance(ModEffects.FROZEN_FEET.get(), 20 * 5, 0));
             }
+            affected++;
         }
 
         level.explode(

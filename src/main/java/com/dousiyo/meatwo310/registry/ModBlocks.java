@@ -18,7 +18,7 @@ public class ModBlocks {
             "meatwo310_cutter",
             () -> new Meatwo310CutterBlock(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.STONE)
-                    .strength(3.5F)
+                    .strength(1.5F, 6.0F)
                     .sound(SoundType.STONE)
                     .requiresCorrectToolForDrops()
             )

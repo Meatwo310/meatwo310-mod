@@ -20,7 +20,7 @@ public class CyanShishaItem extends ShishaItem {
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         if (!level.isClientSide && entity instanceof ServerPlayer serverPlayer) {
-            ResourceLocation advId = Meatwo310.loc("eat_twister716");
+            ResourceLocation advId = Meatwo310.loc("cyan_shisha");
             Advancement advancement = serverPlayer.server.getAdvancements().getAdvancement(advId);
             if (advancement != null) {
                 for (String criterion : advancement.getCriteria().keySet()) {

@@ -1,9 +1,9 @@
 package com.dousiyo.meatwo310.event;
 
 import com.dousiyo.meatwo310.Meatwo310;
+import com.dousiyo.meatwo310.config.ServerConfig;
 import com.dousiyo.meatwo310.registry.ModEffects;
 
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.phys.Vec3;
@@ -49,20 +49,23 @@ public final class HopEffectHooks {
 
         Map<Player, Vec3> hitPlayers = explosion.getHitPlayers();
         if (hitPlayers.isEmpty()) return;
+        int maxAffected = ServerConfig.EXPLOSION_MAX_AFFECTED_ENTITIES.get();
+        int affected = 0;
 
-        for (Entity e : event.getAffectedEntities()) {
-            if (!(e instanceof Player player)) continue;
+        for (Map.Entry<Player, Vec3> entry : hitPlayers.entrySet()) {
+            if (affected >= maxAffected) break;
+            Player player = entry.getKey();
             if (!hasHop(player)) continue;
 
-            Vec3 baseKb = hitPlayers.get(player);
-            if (baseKb == null) continue;
+            Vec3 baseKb = entry.getValue();
 
             Vec3 extra = baseKb.scale(KNOCKBACK_MULTIPLIER - 1.0);
 
             player.setDeltaMovement(player.getDeltaMovement().add(extra));
             player.hasImpulse = true;
 
-            hitPlayers.put(player, baseKb.scale(KNOCKBACK_MULTIPLIER));
+            entry.setValue(baseKb.scale(KNOCKBACK_MULTIPLIER));
+            affected++;
         }
     }
 }

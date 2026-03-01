@@ -24,7 +24,7 @@ import java.util.List;
 @MethodsReturnNonnullByDefault
 public class GrapplerItem extends Item {
     private final int cooldownTicks;
-    private static final double MAX_DISTANCE = 20.0D;
+    private static final double MAX_DISTANCE = 10.0D;
     public static final String NO_FALL_DAMAGE_UNTIL_KEY = "meatwo310:no_fall_damage_until";
     public static final int NO_FALL_DAMAGE_DURATION_TICKS = 100;
 
@@ -57,10 +57,14 @@ public class GrapplerItem extends Item {
                     pPlayer
             ));
 
+            Vec3 hitPos;
             if (hitResult.getType() != HitResult.Type.MISS) {
-                Vec3 hitPos = hitResult.getLocation();
-                performGrapple(pPlayer, hitPos, pUsedHand, stack);
+                hitPos = hitResult.getLocation();
+            } else {
+                Vec3 horizontal = new Vec3(lookVec.x, 0, lookVec.z).normalize();
+                hitPos = pPlayer.position().add(horizontal.scale(MAX_DISTANCE));
             }
+            performGrapple(pPlayer, hitPos, pUsedHand, stack);
 
             pPlayer.getCooldowns().addCooldown(this, this.cooldownTicks);
         }

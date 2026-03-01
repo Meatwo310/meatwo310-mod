@@ -53,10 +53,14 @@ public class EnhancedGrapplerItem extends Item {
                     pPlayer
             ));
 
+            Vec3 hitPos;
             if (hitResult.getType() != HitResult.Type.MISS) {
-                Vec3 hitPos = hitResult.getLocation();
-                performGrapple(pPlayer, hitPos, pUsedHand, stack);
+                hitPos = hitResult.getLocation();
+            } else {
+                Vec3 horizontal = new Vec3(lookVec.x, 0, lookVec.z).normalize();
+                hitPos = pPlayer.position().add(horizontal.scale(MAX_DISTANCE));
             }
+            performGrapple(pPlayer, hitPos, pUsedHand, stack);
         }
 
         return InteractionResultHolder.success(stack);

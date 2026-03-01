@@ -30,7 +30,7 @@ public class IceGrenade extends ThrowableItemProjectile {
         super.onHit(result);
         if (!this.level().isClientSide) {
             this.setPos(result.getLocation());
-            IceKnockbackExplosion.create(this.level(), null, this.getX(), this.getY(), this.getZ(), 5.0F);
+            IceKnockbackExplosion.create(this.level(), this, this.getX(), this.getY(), this.getZ(), 5.0F);
             this.discard();
         }
     }

@@ -30,7 +30,7 @@ public class ModItems {
     private static final int SHISHA_MAX_USES = 8;
     private static final int SHISHA_COOLDOWN_TICKS = 20 * 120;
     private static final int GRAPPLER_MAX_USES = 10;
-    private static final int GRAPPLER_COOLDOWN_TICKS = 20;
+    private static final int GRAPPLER_COOLDOWN_TICKS = 60;
     private static final int IMPULSE_GRENADE_COOLDOWN_TICKS = 20;
     private static final int ICE_GRENADE_COOLDOWN_TICKS = 20;
     private static final int HOP_GRENADE_COOLDOWN_TICKS = 20;

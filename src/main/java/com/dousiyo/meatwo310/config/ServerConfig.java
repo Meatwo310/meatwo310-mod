@@ -10,6 +10,12 @@ public class ServerConfig {
             .define("taczDecayDrop", true);
     public static final ForgeConfigSpec.BooleanValue EXPLOSION_NO_DROP = BUILDER
             .define("noDrop", true);
+    public static final ForgeConfigSpec.DoubleValue EXPLOSION_MAX_GRENADE_RADIUS = BUILDER
+            .comment("Maximum allowed blast radius for custom grenades")
+            .defineInRange("maxGrenadeRadius", 8.0D, 0.5D, 32.0D);
+    public static final ForgeConfigSpec.IntValue EXPLOSION_MAX_AFFECTED_ENTITIES = BUILDER
+            .comment("Upper bound for entities processed by custom grenade explosions")
+            .defineInRange("maxAffectedEntities", 64, 1, 512);
 
     static {
         BUILDER.pop();

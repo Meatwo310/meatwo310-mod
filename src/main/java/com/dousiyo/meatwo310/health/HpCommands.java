@@ -1,7 +1,9 @@
 package com.dousiyo.meatwo310.health;
 
 import com.dousiyo.meatwo310.config.ServerConfig;
+import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
@@ -31,6 +33,16 @@ public final class HpCommands {
                                                 .executes(ctx -> setConfig(ctx, "explosion.noDrop",
                                                         ServerConfig.EXPLOSION_NO_DROP,
                                                         BoolArgumentType.getBool(ctx, "enabled")))))
+                                .then(Commands.literal("explosion.maxGrenadeRadius")
+                                        .then(Commands.argument("value", DoubleArgumentType.doubleArg(0.5D, 32.0D))
+                                                .executes(ctx -> setConfig(ctx, "explosion.maxGrenadeRadius",
+                                                        ServerConfig.EXPLOSION_MAX_GRENADE_RADIUS,
+                                                        DoubleArgumentType.getDouble(ctx, "value")))))
+                                .then(Commands.literal("explosion.maxAffectedEntities")
+                                        .then(Commands.argument("value", IntegerArgumentType.integer(1, 512))
+                                                .executes(ctx -> setConfig(ctx, "explosion.maxAffectedEntities",
+                                                        ServerConfig.EXPLOSION_MAX_AFFECTED_ENTITIES,
+                                                        IntegerArgumentType.getInteger(ctx, "value")))))
                                 .then(Commands.literal("health.enableCustomDefault")
                                         .then(Commands.argument("enabled", BoolArgumentType.bool())
                                                 .executes(ctx -> setConfig(ctx, "health.enableCustomDefault",
@@ -69,6 +81,24 @@ public final class HpCommands {
         configValue.set(enabled);
         ctx.getSource().sendSuccess(() ->
                 Component.literal("[meatwo310] " + key + " = " + enabled), true);
+        return 1;
+    }
+
+    private static int setConfig(CommandContext<CommandSourceStack> ctx, String key,
+                                 net.minecraftforge.common.ForgeConfigSpec.DoubleValue configValue,
+                                 double value) {
+        configValue.set(value);
+        ctx.getSource().sendSuccess(() ->
+                Component.literal("[meatwo310] " + key + " = " + value), true);
+        return 1;
+    }
+
+    private static int setConfig(CommandContext<CommandSourceStack> ctx, String key,
+                                 net.minecraftforge.common.ForgeConfigSpec.IntValue configValue,
+                                 int value) {
+        configValue.set(value);
+        ctx.getSource().sendSuccess(() ->
+                Component.literal("[meatwo310] " + key + " = " + value), true);
         return 1;
     }
 }

@@ -18,11 +18,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class EnhancedGrapplerHookRenderer extends EntityRenderer<EnhancedGrapplerProjectile> {
     private static final ResourceLocation MODEL_LOCATION = Meatwo310.loc("entity/enhanced_grappler_hook");
     private static final ResourceLocation TEXTURE_LOCATION = Meatwo310.loc("textures/entity/enhanced_grappler_hook.png");
+    private static final Map<Direction, List<BakedQuad>> CACHED_CULLED_QUADS = new EnumMap<>(Direction.class);
+    private static List<BakedQuad> CACHED_UNCULLED_QUADS = List.of();
+    private static BakedModel cachedModelRef;
 
     public EnhancedGrapplerHookRenderer(EntityRendererProvider.Context context) {
         super(context);
@@ -42,22 +47,30 @@ public class EnhancedGrapplerHookRenderer extends EntityRenderer<EnhancedGrapple
         BakedModel model = minecraft.getModelManager().getModel(MODEL_LOCATION);
 
         if (model != null && model != minecraft.getModelManager().getMissingModel()) {
+            cacheModelQuads(model);
             VertexConsumer vertexConsumer = buffer.getBuffer(RenderType.entityCutout(TEXTURE_LOCATION));
-
-            RandomSource randomSource = RandomSource.create();
             for (Direction direction : Direction.values()) {
-                randomSource.setSeed(42L);
-                List<BakedQuad> quads = model.getQuads(null, direction, randomSource);
-                renderQuads(poseStack, vertexConsumer, quads, packedLight);
+                renderQuads(poseStack, vertexConsumer, CACHED_CULLED_QUADS.getOrDefault(direction, List.of()), packedLight);
             }
-
-            randomSource.setSeed(42L);
-            List<BakedQuad> unculledQuads = model.getQuads(null, null, randomSource);
-            renderQuads(poseStack, vertexConsumer, unculledQuads, packedLight);
+            renderQuads(poseStack, vertexConsumer, CACHED_UNCULLED_QUADS, packedLight);
         }
 
         poseStack.popPose();
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
+    }
+
+    private static void cacheModelQuads(BakedModel model) {
+        if (model == cachedModelRef && !CACHED_CULLED_QUADS.isEmpty()) return;
+
+        CACHED_CULLED_QUADS.clear();
+        RandomSource random = RandomSource.create();
+        for (Direction direction : Direction.values()) {
+            random.setSeed(42L);
+            CACHED_CULLED_QUADS.put(direction, model.getQuads(null, direction, random));
+        }
+        random.setSeed(42L);
+        CACHED_UNCULLED_QUADS = model.getQuads(null, null, random);
+        cachedModelRef = model;
     }
 
     private void renderQuads(PoseStack poseStack, VertexConsumer consumer, List<BakedQuad> quads, int packedLight) {

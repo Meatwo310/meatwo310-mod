@@ -1,5 +1,6 @@
 package com.dousiyo.meatwo310.util;
 
+import com.dousiyo.meatwo310.config.ServerConfig;
 import com.dousiyo.meatwo310.registry.ModEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -18,28 +19,34 @@ public class HopKnockbackExplosion {
             return;
         }
 
+        double effectiveRadius = Math.min(radius, ServerConfig.EXPLOSION_MAX_GRENADE_RADIUS.get());
+        double radiusSqr = effectiveRadius * effectiveRadius;
+        int maxAffected = ServerConfig.EXPLOSION_MAX_AFFECTED_ENTITIES.get();
+
         Vec3 center = new Vec3(x, y, z);
 
         AABB aabb = new AABB(
-                x - radius, y - radius, z - radius,
-                x + radius, y + radius, z + radius
+                x - effectiveRadius, y - effectiveRadius, z - effectiveRadius,
+                x + effectiveRadius, y + effectiveRadius, z + effectiveRadius
         );
 
-        List<Entity> entities = level.getEntities(null, aabb);
+        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, aabb);
+        int affected = 0;
 
-        for (Entity entity : entities) {
-            if (!(entity instanceof LivingEntity)) {
-                continue;
+        for (LivingEntity entity : entities) {
+            if (affected >= maxAffected) {
+                break;
             }
 
             Vec3 entityPos = entity.position().add(0, entity.getBbHeight() * 0.5, 0);
-            double distance = center.distanceTo(entityPos);
+            double distanceSqr = center.distanceToSqr(entityPos);
 
-            if (distance > radius) {
+            if (distanceSqr > radiusSqr) {
                 continue;
             }
 
-            double normalizedDistance = distance / radius;
+            double distance = Math.sqrt(distanceSqr);
+            double normalizedDistance = distance / effectiveRadius;
             double strength = Math.cos(normalizedDistance * Math.PI * 0.5);
 
             double minStrength = 0.25;
@@ -68,6 +75,7 @@ public class HopKnockbackExplosion {
             if (entity instanceof Player player) {
                 player.addEffect(new MobEffectInstance(ModEffects.HOP.get(), 20 * 5, 0));
             }
+            affected++;
         }
 
         level.explode(
