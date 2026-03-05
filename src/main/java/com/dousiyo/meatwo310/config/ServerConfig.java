@@ -30,5 +30,35 @@ public class ServerConfig {
             .comment("Give Resistance V for 5 seconds after respawn")
             .define("respawnResistanceEffect", true);
 
+    static {
+        BUILDER.pop();
+    }
+
+    public static final ForgeConfigSpec.ConfigValue<String> CAPTURE_BLUE_TEAM_NAME = BUILDER
+            .push("capturePoints")
+            .comment("Scoreboard team name treated as BLUE")
+            .define("blueTeamName", "blue");
+
+    public static final ForgeConfigSpec.ConfigValue<String> CAPTURE_RED_TEAM_NAME = BUILDER
+            .comment("Scoreboard team name treated as RED")
+            .define("redTeamName", "red");
+
+    public static final ForgeConfigSpec.IntValue CAPTURE_SECONDS = BUILDER
+            .comment("Seconds required to move from neutral (0.5) to owned edge (0.0/1.0)")
+            .defineInRange("captureSeconds", 10, 1, 600);
+
+    public static final ForgeConfigSpec.IntValue CAPTURE_START_DELAY_SECONDS = BUILDER
+            .comment("Delay before capture starts after enemies are removed")
+            .defineInRange("startDelaySeconds", 1, 0, 30);
+
+    public static final ForgeConfigSpec.IntValue CAPTURE_OCCUPANCY_UPDATE_INTERVAL_TICKS = BUILDER
+            .comment("AABB occupancy check interval in ticks")
+            .defineInRange("occupancyUpdateIntervalTicks", 5, 1, 40);
+
+    static {
+        BUILDER.pop();
+    }
+
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 }
+

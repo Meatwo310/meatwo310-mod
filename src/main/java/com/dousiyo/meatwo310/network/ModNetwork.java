@@ -38,5 +38,18 @@ public final class ModNetwork {
                 .decoder(TimerHudUpdateS2CPacket::decode)
                 .consumerMainThread(TimerHudUpdateS2CPacket::handle)
                 .add();
+
+        CHANNEL.messageBuilder(CapturePointEventS2CPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(CapturePointEventS2CPacket::encode)
+                .decoder(CapturePointEventS2CPacket::decode)
+                .consumerMainThread(CapturePointEventS2CPacket::handle)
+                .add();
+
+        CHANNEL.messageBuilder(PlayerPointFocusS2CPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
+                .encoder(PlayerPointFocusS2CPacket::encode)
+                .decoder(PlayerPointFocusS2CPacket::decode)
+                .consumerMainThread(PlayerPointFocusS2CPacket::handle)
+                .add();
     }
 }
+

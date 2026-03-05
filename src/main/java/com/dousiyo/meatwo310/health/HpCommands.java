@@ -1,13 +1,13 @@
 package com.dousiyo.meatwo310.health;
 
 import com.dousiyo.meatwo310.config.ServerConfig;
-import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -55,6 +55,32 @@ public final class HpCommands {
                                                         BoolArgumentType.getBool(ctx, "enabled")))))
                         )
                         .then(Commands.literal("hp")
+                                .then(Commands.literal("give")
+                                        .requires(src -> src.hasPermission(2))
+                                        .then(Commands.argument("targets", EntityArgument.players())
+                                                .then(Commands.argument("amount", IntegerArgumentType.integer(1))
+                                                        .executes(ctx -> {
+                                                            int useCount = IntegerArgumentType.getInteger(ctx, "amount");
+                                                            double bonusToGive = HpConsts.BONUS_PER_USE * useCount;
+                                                            int n = 0;
+                                                            for (ServerPlayer p : EntityArgument.getPlayers(ctx, "targets")) {
+                                                                p.getCapability(BonusHealthProvider.CAP).ifPresent(cap -> {
+                                                                    cap.addBonus(bonusToGive);
+                                                                    HpApplier.apply(p, cap.getBonusHealth());
+                                                                });
+                                                                n++;
+                                                            }
+                                                            int hpHearts = (int) (bonusToGive / 2.0D);
+                                                            final int affected = n;
+                                                            ctx.getSource().sendSuccess(() -> Component.literal(
+                                                                    "[meatwo310] arumisia x" + useCount + " applied to " + affected
+                                                                            + " player(s) (max hp +" + bonusToGive
+                                                                            + ", hearts +" + hpHearts + ")"), true);
+                                                            return n;
+                                                        })
+                                                )
+                                        )
+                                )
                                 .then(Commands.literal("reset")
                                         .requires(src -> src.hasPermission(2))
                                         .then(Commands.argument("targets", EntityArgument.players())
@@ -67,6 +93,9 @@ public final class HpCommands {
                                                         });
                                                         n++;
                                                     }
+                                                    final int affected = n;
+                                                    ctx.getSource().sendSuccess(() ->
+                                                            Component.literal("[meatwo310] hp reset for " + affected + " player(s)"), true);
                                                     return n;
                                                 })
                                         )

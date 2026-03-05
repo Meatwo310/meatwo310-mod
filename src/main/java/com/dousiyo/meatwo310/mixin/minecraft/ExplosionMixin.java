@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(Explosion.class)
 public class ExplosionMixin {
+
     @Redirect(method = "finalizeExplosion", at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/world/level/block/state/BlockState;canDropFromExplosion(" +

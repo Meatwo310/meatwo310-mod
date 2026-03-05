@@ -1,8 +1,12 @@
 package com.dousiyo.meatwo310.client;
 
 import com.dousiyo.meatwo310.Meatwo310;
+import com.dousiyo.meatwo310.client.capture.ClientCapturePointsState;
+import com.dousiyo.meatwo310.client.capture.OverviewHudOverlay;
 import com.dousiyo.meatwo310.client.hud.KillMessageHud;
+import com.dousiyo.meatwo310.network.CapturePointEventS2CPacket;
 import com.dousiyo.meatwo310.network.KillMessageS2CPacket;
+import com.dousiyo.meatwo310.network.PlayerPointFocusS2CPacket;
 import com.dousiyo.meatwo310.network.TimerHudUpdateS2CPacket;
 import com.dousiyo.meatwo310.timer.client.ClientTimerState;
 import com.dousiyo.meatwo310.timer.client.TimerHudOverlay;
@@ -17,11 +21,17 @@ public final class ClientEventsModBus {
     public static void registerOverlays(RegisterGuiOverlaysEvent e) {
         KillMessageS2CPacket.CLIENT_HANDLER = KillMessageHud::show;
         TimerHudUpdateS2CPacket.CLIENT_HANDLER = ClientTimerState::apply;
+        CapturePointEventS2CPacket.CLIENT_HANDLER = ClientCapturePointsState::applyPointEvent;
+        PlayerPointFocusS2CPacket.CLIENT_HANDLER = ClientCapturePointsState::applyFocusSlot;
+
         e.registerAboveAll("kill_message", (gui, g, partialTick, w, h) -> {
             KillMessageHud.render(g, w, h);
         });
         e.registerAboveAll("timer_hud", (gui, g, partialTick, w, h) -> {
             TimerHudOverlay.render(g, w, h);
+        });
+        e.registerAboveAll("capture_overview_hud", (gui, g, partialTick, w, h) -> {
+            OverviewHudOverlay.render(g, w, h);
         });
     }
 }
