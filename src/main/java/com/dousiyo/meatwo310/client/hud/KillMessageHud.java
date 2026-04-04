@@ -3,24 +3,22 @@ package com.dousiyo.meatwo310.client.hud;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.scores.PlayerTeam;
-
-import java.util.UUID;
 
 public final class KillMessageHud {
     private KillMessageHud() {}
 
     private static long expiresAtGameTime = -1L;
     private static String victimName = "";
-    private static UUID victimUUID = null;
+    private static boolean hasVictimColor = false;
+    private static int victimColor = 0;
 
     private static final int DURATION_TICKS = 60;
 
-    public static void show(String victim, UUID uuid) {
+    public static void show(String victim, boolean hasColor, int color) {
         Minecraft mc = Minecraft.getInstance();
         victimName = victim;
-        victimUUID = uuid;
+        hasVictimColor = hasColor;
+        victimColor = color;
         if (mc.level == null) {
             expiresAtGameTime = -1L;
             return;
@@ -49,14 +47,8 @@ public final class KillMessageHud {
         g.drawString(mc.font, defeatText, defeatX, defeatY, color, true);
 
         int playerColor = color;
-        if (victimUUID != null) {
-            Player victim = (Player) mc.level.getPlayerByUUID(victimUUID);
-            if (victim != null && victim.getTeam() instanceof PlayerTeam team) {
-                int teamColor = team.getColor().getColor();
-                if (teamColor != 0) {
-                    playerColor = (alpha << 24) | (teamColor & 0xFFFFFF);
-                }
-            }
+        if (hasVictimColor) {
+            playerColor = (alpha << 24) | (victimColor & 0xFFFFFF);
         }
 
         Component playerText = Component.literal(victimName);

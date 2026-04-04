@@ -21,7 +21,7 @@ public final class TimerHudOverlay {
 
     public static void render(GuiGraphics gui, int screenW, int screenH) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.options.hideGui || mc.font == null || !ClientTimerState.isVisible()) {
+        if (mc.options.hideGui || mc.font == null || !ClientTimerState.isVisible() || mc.options.keyPlayerList.isDown()) {
             return;
         }
 

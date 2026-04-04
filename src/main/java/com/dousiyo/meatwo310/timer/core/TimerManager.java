@@ -280,6 +280,28 @@ public class TimerManager {
         }
     }
 
+    public void syncHudOnLogin(ServerPlayer player) {
+        String activeId = activeHudTimerIds.get(player.getUUID());
+        if (activeId == null) {
+            syncHideToPlayer(player);
+            return;
+        }
+
+        TimerDefinition definition = definitions.get(activeId);
+        if (definition == null) {
+            activeHudTimerIds.remove(player.getUUID());
+            syncHideToPlayer(player);
+            return;
+        }
+
+        TimerInstance instance = getOrCreateInstance(player.getUUID(), activeId);
+        if (instance.getState() == TimerState.RUNNING) {
+            updateRunningInstance(player.serverLevel(), instance, definition, true, true);
+        }
+        instance.setLastClientSyncGameTime(player.serverLevel().getGameTime());
+        syncHudToPlayer(player);
+    }
+
     public void syncHudToPlayer(ServerPlayer player) {
         String activeId = activeHudTimerIds.get(player.getUUID());
         if (activeId == null) {

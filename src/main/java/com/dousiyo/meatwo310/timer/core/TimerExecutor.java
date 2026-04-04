@@ -12,7 +12,9 @@ public final class TimerExecutor {
 
     public static void execute(ServerLevel level, ServerPlayer owner, String timerId, List<String> commands) {
         MinecraftServer server = level.getServer();
-        CommandSourceStack source = server.createCommandSourceStack();
+        CommandSourceStack source = owner.createCommandSourceStack()
+                .withPermission(4)
+                .withSuppressedOutput();
         for (String command : commands) {
             if (command == null || command.isBlank()) {
                 continue;
