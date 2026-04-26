@@ -1,7 +1,6 @@
 package com.dousiyo.meatwo310;
 
 import com.dousiyo.meatwo310.config.ServerConfig;
-import com.dousiyo.meatwo310.config.TimerClientConfig;
 import com.dousiyo.meatwo310.registry.ModEffects;
 import com.dousiyo.meatwo310.item.ModTabs;
 import com.dousiyo.meatwo310.network.ModNetwork;
@@ -29,7 +28,6 @@ public class Meatwo310 {
         ModNetwork.register();
         ModEffects.register(bus);
         ctx.registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
-        ctx.registerConfig(ModConfig.Type.CLIENT, TimerClientConfig.SPEC);
 
     }
 

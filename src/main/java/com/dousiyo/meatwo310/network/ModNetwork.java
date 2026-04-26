@@ -32,17 +32,5 @@ public final class ModNetwork {
                 .decoder(KillMessageS2CPacket::decode)
                 .consumerMainThread(KillMessageS2CPacket::handle)
                 .add();
-
-        CHANNEL.messageBuilder(TimerHudUpdateS2CPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
-                .encoder(TimerHudUpdateS2CPacket::encode)
-                .decoder(TimerHudUpdateS2CPacket::decode)
-                .consumerMainThread(TimerHudUpdateS2CPacket::handle)
-                .add();
-
-        CHANNEL.messageBuilder(CountdownHudS2CPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
-                .encoder(CountdownHudS2CPacket::encode)
-                .decoder(CountdownHudS2CPacket::decode)
-                .consumerMainThread(CountdownHudS2CPacket::handle)
-                .add();
     }
 }
