@@ -34,6 +34,36 @@ public class ServerConfig {
         BUILDER.pop();
     }
 
+    public static final ForgeConfigSpec.ConfigValue<String> MAGICAL_GIRL_END_FUNCTION = BUILDER
+            .push("magicalGirl")
+            .comment("Function executed once after Amino Rin's flashback ends. Leave empty to disable.")
+            .define("endFunction", "meatwo310:magical_girl/end");
+    public static final ForgeConfigSpec.IntValue MAGICAL_GIRL_PARTICLE_INTERVAL = BUILDER
+            .comment("Particle emission interval for heavy magical girl area effects")
+            .defineInRange("particleInterval", 2, 1, 10);
+    public static final ForgeConfigSpec.IntValue MAGICAL_GIRL_HAZARD_PARTICLE_INTERVAL = BUILDER
+            .comment("Particle emission interval for large magical girl hazard fields")
+            .defineInRange("hazardParticleInterval", 3, 1, 10);
+    public static final ForgeConfigSpec.IntValue MAGICAL_GIRL_ANCHOR_CHECK_INTERVAL = BUILDER
+            .comment("Interval for safety anchor player protection checks")
+            .defineInRange("anchorCheckInterval", 5, 1, 20);
+    public static final ForgeConfigSpec.IntValue MAGICAL_GIRL_MAX_PHASE3_PROJECTILES = BUILDER
+            .comment("Maximum queued phase 3 superb projectiles per boss")
+            .defineInRange("maxPhase3Projectiles", 64, 8, 256);
+    public static final ForgeConfigSpec.IntValue MAGICAL_GIRL_MAX_FLOATING_GUNS = BUILDER
+            .comment("Maximum floating guns summoned by one magical girl attack")
+            .defineInRange("maxFloatingGuns", 12, 1, 32);
+    public static final ForgeConfigSpec.IntValue MAGICAL_GIRL_LIGHTNING_RENDER_LAYERS = BUILDER
+            .comment("Client lightning render layers for magical girl colored lightning")
+            .defineInRange("lightningRenderLayers", 3, 1, 4);
+    public static final ForgeConfigSpec.IntValue MAGICAL_GIRL_LIGHTNING_RENDER_BRANCHES = BUILDER
+            .comment("Client lightning render branches for magical girl colored lightning")
+            .defineInRange("lightningRenderBranches", 2, 1, 3);
+
+    static {
+        BUILDER.pop();
+    }
+
     public static final ForgeConfigSpec SPEC = BUILDER.build();
 }
 

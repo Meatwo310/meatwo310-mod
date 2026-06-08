@@ -65,13 +65,9 @@ minecraft {
 
         data {
             workingDirectory project.file('run-data')
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', mod_id, '--all', '--output', file('src/main/resources/')
         }
     }
-}
-
-sourceSets.main.resources {
-    srcDir 'src/generated/resources'
 }
 
 repositories {
@@ -116,14 +112,17 @@ dependencies {
 //    }
     implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
-    implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:7401617")
-    compileOnly fg.deobf("curse.maven:timeless-and-classics-zero-1028108:7401617")
+    implementation fg.deobf("curse.maven:timeless-and-classics-zero-1028108:8055552")
+    compileOnly fg.deobf("curse.maven:timeless-and-classics-zero-1028108:8055552")
+    implementation fg.deobf("curse.maven:geckolib-388172:7025129")
     runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
     implementation fg.deobf("curse.maven:chloride-931925:6504509")
+    implementation fg.deobf("maven.modrinth:curios:5.12.0+1.20.1")
     compileOnly fg.deobf("me.shedaniel.cloth:cloth-config-forge:11.0.99")
     compileOnly fg.deobf("dev.architectury:architectury-forge:9.0.7")
     implementation fg.deobf("curse.maven:roughly-enough-items-hacks-521393:4837449")
     compileOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-api-forge:12.1.758")
+    implementation fg.deobf("curse.maven:superb-warfare-1218165:7292685")
     runtimeOnly fg.deobf("me.shedaniel:RoughlyEnoughItems-forge:12.1.758")
     // Default Dependencies
     implementation fg.deobf("curse.maven:roughly-enough-items-hacks-521393:4837449")

@@ -12,6 +12,8 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -34,6 +36,7 @@ public class ModItems {
     private static final int IMPULSE_GRENADE_COOLDOWN_TICKS = 20;
     private static final int ICE_GRENADE_COOLDOWN_TICKS = 20;
     private static final int HOP_GRENADE_COOLDOWN_TICKS = 20;
+    private static final int MAGIC_SAFETY_ANCHOR_COOLDOWN_TICKS = 20 * 8;
 
     public static final RegistryObject<Item> MEATWO310 = add("meatwo310", () -> new Meatwo310Item(new Item.Properties()));
 
@@ -94,6 +97,53 @@ public class ModItems {
                     () -> new BlockItem(ModBlocks.MEATWO310_CUTTER.get(), new Item.Properties()),
                     item -> {
                     });
+    public static final RegistryObject<Item> MAGICAL_GIRL_SPAWN_EGG =
+            add("magical_girl_spawn_egg",
+                    () -> new ForgeSpawnEggItem(ModEntities.MAGICAL_GIRL_BOSS, 0x4c6fdc, 0xe64f89, new Item.Properties()),
+                    item -> {
+                    });
+    public static final RegistryObject<Item> MEATWO310_ENTITY_SPAWN_EGG =
+            add("meatwo310_spawn_egg",
+                    () -> new ForgeSpawnEggItem(ModEntities.MEATWO310_ENTITY, 0x2f5f9f, 0x6b3f24, new Item.Properties()),
+                    item -> {
+                    });
+    public static final RegistryObject<Item> MEATWO310_NPC_SPAWN_EGG =
+            add("npc_spawn_egg",
+                    () -> new ForgeSpawnEggItem(ModEntities.MEATWO310_NPC, 0x2f5f9f, 0x6b3f24, new Item.Properties()),
+                    item -> {
+                    });
+    public static final RegistryObject<Item> MAGICAL_GIRL_WAND =
+            add("magical_girl_wand", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> MAGIC_SAFETY_ANCHOR =
+            add("magic_safety_anchor", () -> new MagicSafetyAnchorItem(
+                    new Item.Properties().stacksTo(16),
+                    MAGIC_SAFETY_ANCHOR_COOLDOWN_TICKS
+            ));
+    public static final RegistryObject<Item> GREEN_LIQUID_BUCKET =
+            add("green_liquid_bucket",
+                    () -> new ModLiquidBucketItem(ModFluids.GREEN_LIQUID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)),
+                    item -> {
+                    });
+    public static final RegistryObject<Item> PURPLE_LIQUID_BUCKET =
+            add("purple_liquid_bucket",
+                    () -> new ModLiquidBucketItem(ModFluids.PURPLE_LIQUID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)),
+                    item -> {
+                    });
+    public static final RegistryObject<Item> LIGHT_GRAY_LIQUID_BUCKET =
+            add("light_gray_liquid_bucket",
+                    () -> new ModLiquidBucketItem(ModFluids.LIGHT_GRAY_LIQUID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)),
+                    item -> {
+                    });
+    public static final RegistryObject<Item> LIGHT_BLUE_LIQUID_BUCKET =
+            add("light_blue_liquid_bucket",
+                    () -> new ModLiquidBucketItem(ModFluids.LIGHT_BLUE_LIQUID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)),
+                    item -> {
+                    });
+    public static final RegistryObject<Item> RED_LIQUID_BUCKET =
+            add("red_liquid_bucket",
+                    () -> new ModLiquidBucketItem(ModFluids.RED_LIQUID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)),
+                    item -> {
+                    });
     public static void register(IEventBus modEventBus) {
         ITEMS.register(modEventBus);
     }
@@ -103,6 +153,14 @@ public class ModItems {
             add("arumisia", () -> new ArumisiaItem(new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> TWISTER716 =
             add("twister716", () -> new Twister716Item(
+                    new Item.Properties().food(TWISTER716_FOOD)
+            ));
+    public static final RegistryObject<Item> TWISTER716_RED =
+            add("twister716_red", () -> new Twister716Item(
+                    new Item.Properties().food(TWISTER716_FOOD)
+            ));
+    public static final RegistryObject<Item> TWISTER716_PURPLE =
+            add("twister716_purple", () -> new Twister716Item(
                     new Item.Properties().food(TWISTER716_FOOD)
             ));
 

@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "meatwo310:green_liquid",
+    "meatwo310:flowing_green_liquid",
+    "meatwo310:purple_liquid",
+    "meatwo310:flowing_purple_liquid",
+    "meatwo310:light_gray_liquid",
+    "meatwo310:flowing_light_gray_liquid",
+    "meatwo310:light_blue_liquid",
+    "meatwo310:flowing_light_blue_liquid",
+    "meatwo310:red_liquid",
+    "meatwo310:flowing_red_liquid"
+  ]
+}

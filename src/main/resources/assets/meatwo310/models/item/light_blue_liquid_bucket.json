@@ -1,0 +1,6 @@
+{
+  "parent": "forge:item/bucket",
+  "loader": "forge:fluid_container",
+  "fluid": "meatwo310:light_blue_liquid",
+  "apply_tint": true
+}

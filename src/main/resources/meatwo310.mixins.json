@@ -7,10 +7,11 @@
   "mixins": [
     "minecraft.AbstractFurnaceBlockEntityMixin",
     "minecraft.ExplosionMixin",
-    "minecraft.ServerPlayerDeathMessageMixin",
     "tacz.ExplodeUtilMixin"
   ],
-  "client": [],
+  "client": [
+    "minecraft.ClientLevelMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

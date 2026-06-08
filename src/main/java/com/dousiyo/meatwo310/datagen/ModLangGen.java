@@ -43,6 +43,8 @@ public class ModLangGen {
         lp.add(ModItems.VALINE3G.get(), "Valine3g");
         lp.add(ModItems.ARUMISIA.get(), "Arumisia");
         lp.add(ModItems.TWISTER716.get(), "Twister716");
+        lp.add(ModItems.TWISTER716_RED.get(), "Twister716 Red");
+        lp.add(ModItems.TWISTER716_PURPLE.get(), "Twister716 Purple");
         lp.add(ModItems.CYAN_SHISHA.get(), "Cyan Shisha");
         lp.add(ModItems.PINK_SHISHA.get(), "Pink Shisha");
         lp.add(ModItems.GRAPPLER.get(), "Grappler");
@@ -54,6 +56,26 @@ public class ModLangGen {
         lp.add(ModItems.HOP_FISH.get(), "Hop Fish");
         lp.add(ModItems.BLINK_FISH.get(), "Blink Fish");
         lp.add(ModItems.ICE_FISH.get(), "Ice Fish");
+        lp.add(ModItems.MAGIC_SAFETY_ANCHOR.get(), "Magic Safety Anchor");
+        lp.add(ModItems.MEATWO310_ENTITY_SPAWN_EGG.get(), "meatwo310 Spawn Egg");
+        lp.add(ModItems.MEATWO310_NPC_SPAWN_EGG.get(), "npc Spawn Egg");
+        lp.add(ModItems.GREEN_LIQUID_BUCKET.get(), "Green Liquid Bucket");
+        lp.add(ModItems.PURPLE_LIQUID_BUCKET.get(), "Purple Liquid Bucket");
+        lp.add(ModItems.LIGHT_GRAY_LIQUID_BUCKET.get(), "Light Gray Liquid Bucket");
+        lp.add(ModItems.LIGHT_BLUE_LIQUID_BUCKET.get(), "Light Blue Liquid Bucket");
+        lp.add(ModItems.RED_LIQUID_BUCKET.get(), "Red Liquid Bucket");
+        lp.add("block.meatwo310.green_liquid", "Green Liquid");
+        lp.add("block.meatwo310.purple_liquid", "Purple Liquid");
+        lp.add("block.meatwo310.light_gray_liquid", "Light Gray Liquid");
+        lp.add("block.meatwo310.light_blue_liquid", "Light Blue Liquid");
+        lp.add("block.meatwo310.red_liquid", "Red Liquid");
+        lp.add("fluid_type.meatwo310.green_liquid", "Green Liquid");
+        lp.add("fluid_type.meatwo310.purple_liquid", "Purple Liquid");
+        lp.add("fluid_type.meatwo310.light_gray_liquid", "Light Gray Liquid");
+        lp.add("fluid_type.meatwo310.light_blue_liquid", "Light Blue Liquid");
+        lp.add("fluid_type.meatwo310.red_liquid", "Red Liquid");
+        lp.add("entity.meatwo310.meatwo310", "meatwo310");
+        lp.add("entity.meatwo310.npc", "npc");
 
         lp.add("tooltip.meatwo310.meatwo310", "A mysterious item");
         lp.add("tooltip.meatwo310.low_meatwo310.1", "Lower grade Meatwo310");
@@ -73,5 +95,7 @@ public class ModLangGen {
         lp.add("tooltip.meatwo310.hop_fish", "Eat to gain hop effect");
         lp.add("tooltip.meatwo310.blink_fish", "Eat to gain blink effect");
         lp.add("tooltip.meatwo310.ice_fish", "Eat to gain frozen feet effect");
+        lp.add("tooltip.meatwo310.magic_safety_anchor.1", "Creates a safe zone that dispels magical bullets and hazards");
+        lp.add("tooltip.meatwo310.magic_safety_anchor.2", "Grants resistance and fire resistance while inside");
     }
 }

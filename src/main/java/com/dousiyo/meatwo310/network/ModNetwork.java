@@ -26,11 +26,5 @@ public final class ModNetwork {
                 .decoder(BlinkTeleportC2SPacket::decode)
                 .consumerMainThread(BlinkTeleportC2SPacket::handle)
                 .add();
-
-        CHANNEL.messageBuilder(KillMessageS2CPacket.class, id++, NetworkDirection.PLAY_TO_CLIENT)
-                .encoder(KillMessageS2CPacket::encode)
-                .decoder(KillMessageS2CPacket::decode)
-                .consumerMainThread(KillMessageS2CPacket::handle)
-                .add();
     }
 }
