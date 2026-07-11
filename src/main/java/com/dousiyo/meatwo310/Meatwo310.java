@@ -30,7 +30,6 @@ public class Meatwo310 {
         ModItems.register(bus);
         ModTabs.register(bus);
         ModEntities.register(bus);
-        ModParticles.register(bus);
         ModMenus.MENUS.register(bus);
         ModRecipeTypes.RECIPE_TYPES.register(bus);
         ModRecipeSerializers.RECIPE_SERIALIZERS.register(bus);

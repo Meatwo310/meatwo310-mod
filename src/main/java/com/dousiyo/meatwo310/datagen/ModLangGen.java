@@ -56,7 +56,6 @@ public class ModLangGen {
         lp.add(ModItems.HOP_FISH.get(), "Hop Fish");
         lp.add(ModItems.BLINK_FISH.get(), "Blink Fish");
         lp.add(ModItems.ICE_FISH.get(), "Ice Fish");
-        lp.add(ModItems.MAGIC_SAFETY_ANCHOR.get(), "Magic Safety Anchor");
         lp.add(ModItems.MEATWO310_ENTITY_SPAWN_EGG.get(), "meatwo310 Spawn Egg");
         lp.add(ModItems.MEATWO310_NPC_SPAWN_EGG.get(), "npc Spawn Egg");
         lp.add(ModItems.GREEN_LIQUID_BUCKET.get(), "Green Liquid Bucket");
@@ -95,7 +94,5 @@ public class ModLangGen {
         lp.add("tooltip.meatwo310.hop_fish", "Eat to gain hop effect");
         lp.add("tooltip.meatwo310.blink_fish", "Eat to gain blink effect");
         lp.add("tooltip.meatwo310.ice_fish", "Eat to gain frozen feet effect");
-        lp.add("tooltip.meatwo310.magic_safety_anchor.1", "Creates a safe zone that dispels magical bullets and hazards");
-        lp.add("tooltip.meatwo310.magic_safety_anchor.2", "Grants resistance and fire resistance while inside");
     }
 }

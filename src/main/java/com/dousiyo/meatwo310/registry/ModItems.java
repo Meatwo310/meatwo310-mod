@@ -36,7 +36,6 @@ public class ModItems {
     private static final int IMPULSE_GRENADE_COOLDOWN_TICKS = 20;
     private static final int ICE_GRENADE_COOLDOWN_TICKS = 20;
     private static final int HOP_GRENADE_COOLDOWN_TICKS = 20;
-    private static final int MAGIC_SAFETY_ANCHOR_COOLDOWN_TICKS = 20 * 8;
 
     public static final RegistryObject<Item> MEATWO310 = add("meatwo310", () -> new Meatwo310Item(new Item.Properties()));
 
@@ -97,11 +96,6 @@ public class ModItems {
                     () -> new BlockItem(ModBlocks.MEATWO310_CUTTER.get(), new Item.Properties()),
                     item -> {
                     });
-    public static final RegistryObject<Item> MAGICAL_GIRL_SPAWN_EGG =
-            add("magical_girl_spawn_egg",
-                    () -> new ForgeSpawnEggItem(ModEntities.MAGICAL_GIRL_BOSS, 0x4c6fdc, 0xe64f89, new Item.Properties()),
-                    item -> {
-                    });
     public static final RegistryObject<Item> MEATWO310_ENTITY_SPAWN_EGG =
             add("meatwo310_spawn_egg",
                     () -> new ForgeSpawnEggItem(ModEntities.MEATWO310_ENTITY, 0x2f5f9f, 0x6b3f24, new Item.Properties()),
@@ -112,13 +106,6 @@ public class ModItems {
                     () -> new ForgeSpawnEggItem(ModEntities.MEATWO310_NPC, 0x2f5f9f, 0x6b3f24, new Item.Properties()),
                     item -> {
                     });
-    public static final RegistryObject<Item> MAGICAL_GIRL_WAND =
-            add("magical_girl_wand", () -> new Item(new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> MAGIC_SAFETY_ANCHOR =
-            add("magic_safety_anchor", () -> new MagicSafetyAnchorItem(
-                    new Item.Properties().stacksTo(16),
-                    MAGIC_SAFETY_ANCHOR_COOLDOWN_TICKS
-            ));
     public static final RegistryObject<Item> GREEN_LIQUID_BUCKET =
             add("green_liquid_bucket",
                     () -> new ModLiquidBucketItem(ModFluids.GREEN_LIQUID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)),

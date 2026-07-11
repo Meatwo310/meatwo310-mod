@@ -9,9 +9,6 @@
     "minecraft.ExplosionMixin",
     "tacz.ExplodeUtilMixin"
   ],
-  "client": [
-    "minecraft.ClientLevelMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
   }
